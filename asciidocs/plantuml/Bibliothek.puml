@@ -1,0 +1,39 @@
+@startuml
+class Buch {
+    - autor: String
+    - titel: String
+    - verlag: String
+    - kurzerklärung: String
+    - ISBN-Nummer: int
+    - fachrichtung: Fachrichtung
+    - stichwörter: Stichwörter
+    - bestände: int
+}
+
+class Entlehner {
+    - name: String
+}
+
+class Fachrichtung{
+    - bezeichnung: String
+}
+
+class Stichwörter{
+    - stichwörter: String
+}
+
+class Entlehnvorgang{
+    - entlehnDatum: LocalDate
+    - entlehner: Entlehner
+    - buch: Buch
+    - rückgabeDatum: LocalDate
+    - mahnspesen: int
+}
+
+Entlehner "1" - "*" Buch
+Buch "1" -- "*" Fachrichtung
+(Buch,Entlehner) .. Entlehnvorgang
+Buch "1" - "*" Stichwörter
+
+
+@enduml
